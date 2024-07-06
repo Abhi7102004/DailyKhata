@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hisaab of <%= fileNameWithoutExtension %> date</title>
+    <link rel="stylesheet" href="/app.css">
+    <style>
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <%- include('partials/header') %>
+    <div class="fade-in px-20 py-5 w-screen flex flex-col justify-center items-center fade-in">
+        <p class="font-medium text-lg mb-4 tracking-wide">Hisaab of <span class="text-blue-600 font-semibold"><%= fileNameWithoutExtension %></span> date</p>
+        <% if (rows.length === 0) { %>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <p class="text-gray-500 text-lg">This Hisaab is currently empty.</p>
+            </div>
+        <% } else { %>
+            <table class="w-5/12 bg-white border-collapse border border-gray-300 transition-transform transform hover:scale-105">
+                <thead>
+                    <tr class="text-center bg-gray-200">
+                        <th class="py-2 px-4 border-b border-r border-gray-300">Items</th>
+                        <th class="py-2 px-4 border-b border-gray-300">Price (in Rs)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% rows.forEach(row => { %>
+                        <tr class="hover:bg-gray-100 hover:scale-105 cursor-default transition-all fade-in">
+                            <td class="py-2 px-4 border-b border-r border-gray-300 text-center"><%= row.item %></td>
+                            <td class="py-2 px-4 border-b border-gray-300 text-center"><%= row.price %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Hisaab</title>
+    <link href="/app.css" rel="stylesheet" />
+    <style>
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <div class="px-20 fade-in py-5 w-screen flex flex-col justify-center items-center">
+        <p class="font-medium my-4 text-lg tracking-wide">You're editing hisaab of <span class="text-blue-600 font-semibold"><%= fileNameWithoutExtension %></span> date</p>
+        <form action="/update/<%= fileName %>" method="post" class="w-full max-w-3xl">
+            <textarea name="khataData" id="khataData" rows="10" class="w-full px-3 py-2 border border-gray-300 shadow-lg shadow-gray-200 rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter your Hisaab data here..."><%= data %></textarea>
+            <div class="flex justify-center mt-4">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-2 rounded-md focus:outline-none">Save Hisaab</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
